@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <LangVersion>latest</LangVersion>
+        <Nullable>enable</Nullable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <IsPackable>true</IsPackable>
+        <PackageId>Generator.Testing</PackageId>
+        <Version>1.0.0</Version>
+        <Authors>Alexander Nachtmann</Authors>
+        <Description>Fluent testing framework for Roslyn incremental generators</Description>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageTags>roslyn;source-generator;testing;incremental-generator;unit-test</PackageTags>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <RepositoryUrl>https://github.com/ANcpLua/Generator.Testing</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/ANcpLua/Generator.Testing</PackageProjectUrl>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.14.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="README.md" Pack="true" PackagePath="\"/>
+        <None Include="LICENSE" Pack="true" PackagePath="\"/>
+    </ItemGroup>
+</Project>
