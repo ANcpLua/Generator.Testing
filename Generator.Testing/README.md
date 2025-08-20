@@ -1,4 +1,3 @@
-```markdown
 # Generator.Testing
 
 Fluent testing for Roslyn incremental generators.
