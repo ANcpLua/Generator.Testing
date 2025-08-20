@@ -12,7 +12,7 @@ Fluent testing for Roslyn incremental generators.
 
 ```csharp
 [Fact]
-public async Task Generator_ProducesExpectedOutput()
+public async Task GeneratesOutputForSingleClass()
 {
     await """
         [GenerateToString]
@@ -20,7 +20,27 @@ public async Task Generator_ProducesExpectedOutput()
         { 
             public string Name { get; set; }
         }
-        """.ShouldGenerate<MyGenerator>("Person.g.cs");
+        """.ShouldGenerate<ToStringGenerator>("Person.g.cs");
+}
+
+[Theory]
+[InlineData("class", "MyClass")]
+[InlineData("struct", "MyStruct")]
+[InlineData("record", "MyRecord")]
+[InlineData("record struct", "MyRecordStruct")]
+public async Task GenerateToString_HandlesClassStructAndRecord_ProducesExpectedOutput(string keyword, string typeName)
+
+{
+    await $$"""
+            using InterceptGenerator;
+
+            [GenerateToString]
+            public partial {{keyword}} {{typeName}}
+            {
+                public int Value { get; set; }
+            }
+            """.ShouldGenerate<MyGenerator>(
+        $"{typeName}.MyGenerator.g.cs");
 }
 ```
 
